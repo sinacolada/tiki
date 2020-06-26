@@ -1,0 +1,36 @@
+plugins {
+	id 'org.springframework.boot' version '2.2.2.RELEASE'
+	id 'io.spring.dependency-management' version '1.0.8.RELEASE'
+	id 'java'
+    id 'java-library'
+}
+
+repositories {
+    jcenter()
+    mavenCentral()
+}
+
+description = """tiki data layer api"""
+group = 'com.sinacolada'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '11'
+targetCompatibility = '11'
+
+dependencies {
+    api 'org.apache.commons:commons-math3:3.6.1'
+    implementation 'com.google.guava:guava:22.0'
+    testImplementation 'junit:junit:4.12'
+    implementation 'org.mariadb.jdbc:mariadb-java-client:2.6.0'
+    implementation 'com.google.code.gson:gson:2.8.6'
+    implementation 'org.springframework.boot:spring-boot-starter'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+	compileOnly 'org.projectlombok:lombok:1.18.12'
+	annotationProcessor 'org.projectlombok:lombok:1.18.12'
+    testImplementation('org.springframework.boot:spring-boot-starter-test') {
+		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+	}	
+}
+
+test {
+	useJUnitPlatform()
+}
