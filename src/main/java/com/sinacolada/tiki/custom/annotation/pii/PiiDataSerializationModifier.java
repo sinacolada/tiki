@@ -1,10 +1,9 @@
-package com.sinacolada.tiki.log.pii;
+package com.sinacolada.tiki.custom.annotation.pii;
 
 import com.fasterxml.jackson.databind.BeanDescription;
 import com.fasterxml.jackson.databind.JsonSerializer;
 import com.fasterxml.jackson.databind.SerializationConfig;
 import com.fasterxml.jackson.databind.ser.BeanSerializerModifier;
-import com.sinacolada.tiki.custom.annotation.PiiData;
 import com.sinacolada.tiki.util.ClassUtils;
 
 public class PiiDataSerializationModifier extends BeanSerializerModifier {

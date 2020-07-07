@@ -1,4 +1,4 @@
-package com.sinacolada.tiki.log.pii;
+package com.sinacolada.tiki.custom.annotation.pii;
 
 import java.io.IOException;
 import java.lang.reflect.Field;
@@ -7,7 +7,6 @@ import java.util.function.Supplier;
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.databind.JsonSerializer;
 import com.fasterxml.jackson.databind.SerializerProvider;
-import com.sinacolada.tiki.custom.annotation.PiiData;
 import com.sinacolada.tiki.util.ClassUtils;
 
 import org.apache.commons.logging.Log;

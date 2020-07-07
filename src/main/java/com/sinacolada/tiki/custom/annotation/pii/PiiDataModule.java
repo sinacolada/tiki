@@ -1,4 +1,4 @@
-package com.sinacolada.tiki.log.pii;
+package com.sinacolada.tiki.custom.annotation.pii;
 
 import com.fasterxml.jackson.databind.module.SimpleModule;
 
