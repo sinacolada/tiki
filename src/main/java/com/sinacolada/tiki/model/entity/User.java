@@ -3,14 +3,14 @@ package com.sinacolada.tiki.model.entity;
 import java.sql.Date;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
-import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-// import javax.persistence.SequenceGenerator;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
@@ -24,28 +24,22 @@ import lombok.Data;
 @Table(name = "users")
 public class User {
 
-    // @SequenceGenerator(name = "user_userId_seq", sequenceName =
-    // "user_userId_seq", allocationSize = 1)
-    // @GeneratedValue(strategy = GenerationType.SEQUENCE, generator =
-    // "user_userId_seq")
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "user_id", updatable = false)
-    private int id;
+    @Column(name = "id", updatable = false)
+    private Long id;
 
-    @Column(unique = true, nullable = false)
+    @Column(name = "username", unique = true, nullable = false)
     @NotNull
     private String username;
 
-    @Column(unique = true, nullable = false)
+    @Column(name = "email", unique = true, nullable = false)
     @NotNull
     private String email;
 
-    @Column(nullable = false)
+    @Column(name = "password", nullable = false)
     @NotNull
     private String password;
-
-    private Integer failedAttempts;
 
     @Column(name = "date_joined", nullable = false, updatable = false)
     @CreationTimestamp
@@ -55,15 +49,19 @@ public class User {
     @UpdateTimestamp
     private Date dateUpdated;
 
-    private boolean active;
+    @Column(name = "active")
+    private boolean active = true;
 
+    @Column(name = "disabled")
     private boolean disabled = false;
+
+    private Integer failedAttempts;
 
     @OneToMany
     @NotNull
     private Set<Role> roles;
 
-    @Embedded
-    private UserInformation userInformation;
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
+    private Profile profile;
 
 }

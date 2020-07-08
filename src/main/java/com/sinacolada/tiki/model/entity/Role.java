@@ -10,35 +10,42 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.Immutable;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import lombok.Data;
 
 @Data
 @Entity
-@Immutable
 @Table(name = "roles")
 public class Role {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "role_id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id", updatable = false)
     private Integer id;
 
-    @Column(name = "name", nullable = false)
+    @Column(name = "name", nullable = false, updatable = false, length = 60)
+    @NotNull
     private String name;
 
-    @Column(name = "desc", nullable = false)
+    @Column(name = "description", nullable = false)
+    @NotNull
     private String description;
 
-    @Column(name = "created", nullable = false)
+    @Column(name = "created", updatable = false, nullable = false)
+    @NotNull
     @CreationTimestamp
     private Date dateCreated;
 
+    @Column(name = "updated", nullable = false)
+    @NotNull
+    @UpdateTimestamp
+    private Date dateUpdated;
+
     @OneToMany
-    @Column(name = "permissions", nullable = false)
     private Set<Permission> permissions;
 
 }

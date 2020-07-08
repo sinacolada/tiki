@@ -8,10 +8,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-
-import com.google.errorprone.annotations.Immutable;
+import javax.validation.constraints.NotNull;
 
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.Immutable;
 
 import lombok.Data;
 
@@ -22,17 +22,20 @@ import lombok.Data;
 public class Permission {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "permission_id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Integer id;
 
-    @Column(name = "name", nullable = false)
+    @Column(name = "name", nullable = false, length = 60)
+    @NotNull
     private String name;
 
-    @Column(name = "desc", nullable = false)
+    @Column(name = "description", nullable = false)
+    @NotNull
     private String description;
 
     @Column(name = "created", nullable = false)
+    @NotNull
     @CreationTimestamp
     private Date dateCreated;
 

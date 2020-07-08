@@ -6,20 +6,20 @@ import com.sinacolada.tiki.model.entity.User;
 
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
-import org.springframework.data.repository.query.Param;
+// import org.springframework.data.repository.query.Param;
 
-public interface UserRepository extends CrudRepository<User, Integer> {
+public interface UserRepository extends CrudRepository<User, Long> {
 
-    public Integer createUser(User user);
+    // public Integer createUser(User user);
 
-    @Query("select user from User user where user.id=:id")
-    public User findUserById(@Param("id") Integer id);
+    // @Query("select user from User user where user.id=:id")
+    // public User findUserById(@Param("id") Integer id);
 
     @Query("select user from User user")
-    public List<User> getAllUsers();
+    List<User> getAllUsers();
 
-    public User updateUser(@Param("id") Integer id, User user);
+    // public User updateUser(@Param("id") Integer id, User user);
 
-    public Integer deleteUser(@Param("id") Integer id);
+    // public Integer deleteUser(@Param("id") Integer id);
 
 }
