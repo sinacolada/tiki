@@ -1,12 +1,14 @@
 server:
   port: 8080
+  servlet:
+    context-path: /api
 
 spring:
   jpa:
     database: POSTGRESQL
     show-sql: true
     hibernate:
-      ddl-auto: create
+      ddl-auto: none
       naming-strategy: org.hibernate.cfg.ImprovedNamingStrategy
       properties:
         hibernate:
@@ -14,9 +16,15 @@ spring:
           use_sql_comments: true
           format_sql: true
           show_sql: true
+          dialect: org.hibernate.dialect.PostgreSQLDialect
   datasource:
     platform: postgres
     url: jdbc:postgresql://localhost:5432/tiki-dev
     username: postgres
     password: link@SS2020!
     driverClassName: org.postgresql.Driver
+
+tiki:
+  app:
+    jwtSecret: tikiSecret
+    jwtExpirationMs: 86400000

@@ -10,11 +10,13 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 @Data
+@EqualsAndHashCode(callSuper = false)
 @Entity
 @Table(name = "user_profiles")
-public class Profile {
+public class Profile extends BaseEntity {
 
     @Id
     @Column(name = "id")
